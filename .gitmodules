@@ -1,0 +1,36 @@
+[submodule "tools/clang-format-hooks"]
+	path = tools/clang-format-hooks
+	url = https://github.com/barisione/clang-format-hooks.git
+[submodule "libs/Catch2"]
+	path = libs/Catch2
+	url = https://github.com/catchorg/Catch2.git
+[submodule "libs/EASTL"]
+	path = libs/EASTL
+	url = ../EASTL.git
+[submodule "libs/g3log"]
+	path = libs/g3log
+	url = ../g3log.git
+[submodule "libs/Lyra"]
+	path = libs/Lyra
+	url = https://github.com/bfgroup/Lyra.git
+[submodule "libs/llvm-project"]
+	path = libs/llvm-project
+	url = https://github.com/llvm/llvm-project.git
+[submodule "libs/musl"]
+	path = libs/musl
+	url = git://git.musl-libc.org/musl
+[submodule "libs/jemalloc"]
+	path = libs/jemalloc
+	url = https://github.com/jemalloc/jemalloc.git
+[submodule "libs/cs_string"]
+	path = libs/cs_string
+	url = https://github.com/copperspice/cs_string.git
+[submodule "libs/cmake"]
+	path = libs/cmake
+	url = https://gitlab.kitware.com/cmake/cmake.git
+[submodule "libs/ninja"]
+	path = libs/ninja
+	url = https://github.com/ninja-build/ninja.git
+[submodule "libs/doxygen"]
+	path = libs/doxygen
+	url = https://github.com/doxygen/doxygen.git
