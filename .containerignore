@@ -1,0 +1,8 @@
+**/.git*
+.dockerignore
+build
+compile_commands.json
+.clangd
+.cache
+tools/env
+release

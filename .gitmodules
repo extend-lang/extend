@@ -1,0 +1,21 @@
+[submodule "tools/clang-format-hooks"]
+	path = tools/clang-format-hooks
+	url = https://github.com/barisione/clang-format-hooks.git
+[submodule "libs/Catch2"]
+	path = libs/Catch2
+	url = https://github.com/catchorg/Catch2.git
+[submodule "libs/EASTL"]
+	path = libs/EASTL
+	url = ../EASTL.git
+[submodule "libs/g3log"]
+	path = libs/g3log
+	url = ../g3log.git
+[submodule "libs/Lyra"]
+	path = libs/Lyra
+	url = ../Lyra.git
+[submodule "libs/jemalloc"]
+	path = libs/jemalloc
+	url = https://github.com/jemalloc/jemalloc.git
+[submodule "libs/flat_hash_map"]
+	path = libs/flat_hash_map
+	url = ../flat_hash_map.git
