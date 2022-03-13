@@ -1,0 +1,59 @@
+From c6bf0a9be9f0729728596d9885fe43ac3c9b0cb4 Mon Sep 17 00:00:00 2001
+From: Vladimir Liutov <vs@lutov.net>
+Date: Sun, 20 Mar 2022 13:35:30 +0300
+Subject: [PATCH] hotfix-linux
+
+- We have to include utility for std::forward.
+- We have to reinterpret pointers to char8_t to be able use strncpy
+  and match api.
+---
+ include/eathread/eathread_thread.h | 1 +
+ source/unix/eathread_unix.cpp      | 6 +++---
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/include/eathread/eathread_thread.h b/include/eathread/eathread_thread.h
+index 6c7b516..fc557b2 100644
+--- a/include/eathread/eathread_thread.h
++++ b/include/eathread/eathread_thread.h
+@@ -12,6 +12,7 @@ EA_DISABLE_ALL_VC_WARNINGS()
+ #include <stddef.h>
+ #include <stdlib.h>
+ #include <type_traits>
++#include <utility>
+ EA_RESTORE_ALL_VC_WARNINGS()
+ 
+ #if defined(EA_PRAGMA_ONCE_SUPPORTED)
+diff --git a/source/unix/eathread_unix.cpp b/source/unix/eathread_unix.cpp
+index eb2feee..8fc0578 100644
+--- a/source/unix/eathread_unix.cpp
++++ b/source/unix/eathread_unix.cpp
+@@ -418,7 +418,7 @@
+ 					// on older kernels), and hence distinguish which thread might be responsible for the high 
+ 					// CPU load or similar problems.
+ 					char8_t nameBuf[16]; // Limited to 16 bytes, null terminated if < 16 bytes
+-					strncpy(nameBuf, pName, sizeof(nameBuf));
++					strncpy(reinterpret_cast<char *>(nameBuf), reinterpret_cast<const char *>(pName), sizeof(nameBuf));
+ 					nameBuf[15] = 0;
+ 					prctl(PR_SET_NAME, (unsigned long)nameBuf, 0, 0, 0);
+ 
+@@ -465,7 +465,7 @@
+ 				// only if the currently executing thread is the one that is associated with
+ 				// this class object.
+ 				if(GetId(pTDD) == EA::Thread::GetThreadId())
+-					SetCurrentThreadName(pTDD->mName);
++					SetCurrentThreadName((const char8_t *)pTDD->mName);
+ 
+ 			#elif defined(EA_PLATFORM_BSD) 
+ 				EAT_COMPILETIME_ASSERT(EATHREAD_OTHER_THREAD_NAMING_SUPPORTED == 1);
+@@ -500,7 +500,7 @@
+ 	EATHREADLIB_API const char* EA::Thread::GetThreadName(const EA::Thread::ThreadId& id)
+ 	{ 
+ 		EAThreadDynamicData* const pTDD = FindThreadDynamicData(id);
+-		return pTDD ?  pTDD->mName : "";
++		return pTDD ? reinterpret_cast<const char *>(pTDD->mName) : "";
+ 	}
+ 
+ 
+-- 
+2.35.1
+

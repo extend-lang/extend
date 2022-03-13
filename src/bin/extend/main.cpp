@@ -15,14 +15,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "main.h"
-#include "greetings.h"
-#include "logger/logger.h"
 #include <iostream>
 
-int main()
+int
+main(int, char** argv)
 {
-  std::cout << greetings << std::endl;
-  extend::logger::log();
+  std::cout << "Usage: " << argv[0] << std::endl;
   return 0;
 }

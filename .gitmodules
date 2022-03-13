@@ -1,3 +1,9 @@
 [submodule "third_party/Catch2"]
 	path = third_party/Catch2
 	url = git@github.com:catchorg/Catch2.git
+[submodule "third_party/EASTL"]
+	path = third_party/EASTL
+	url = https://github.com/electronicarts/EASTL.git
+[submodule "third_party/clang-format-hooks"]
+	path = third_party/clang-format-hooks
+	url = https://github.com/barisione/clang-format-hooks.git

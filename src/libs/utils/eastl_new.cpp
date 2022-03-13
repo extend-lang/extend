@@ -15,6 +15,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "greetings.h"
+#include <cinttypes>
+#include <cstddef>
 
-const char *greetings = "Hello, World!";
+void* __cdecl
+operator new[](size_t size,
+               const char* /*name*/,
+               int /*flags*/,
+               unsigned /*debugFlags*/,
+               const char* /*file*/,
+               int /*line*/)
+{
+  return new uint8_t[size];
+}

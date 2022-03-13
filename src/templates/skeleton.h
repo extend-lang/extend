@@ -17,8 +17,6 @@
 
 #pragma once
 
-using namespace eastl;
-
 namespace extend::[:VIM_EVAL:]expand('%:p:h:t')[:END_EVAL:] {
 
 }
